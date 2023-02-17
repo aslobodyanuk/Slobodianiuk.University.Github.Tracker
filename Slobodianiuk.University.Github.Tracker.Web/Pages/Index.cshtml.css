@@ -1,0 +1,15 @@
+﻿.repository-card {
+    min-width: 15rem;
+}
+
+.repository-row {
+    height: 1.5rem;
+}
+
+.total-number:hover {
+    cursor: pointer;
+}
+
+.index-container {
+    min-width: 90% !important;
+}

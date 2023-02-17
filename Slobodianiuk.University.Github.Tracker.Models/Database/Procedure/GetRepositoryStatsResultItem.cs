@@ -21,5 +21,13 @@ namespace Slobodianiuk.University.Github.Tracker.Models.Database.Procedure
         public int Total { get; set; }
 
         public int FilesCount { get; set; }
+
+        public static GetRepositoryStatsResultItem Default = new()
+        {
+            Additions = 0,
+            Deletions = 0,
+            Total = 0,
+            FilesCount = 0
+        };
     }
 }

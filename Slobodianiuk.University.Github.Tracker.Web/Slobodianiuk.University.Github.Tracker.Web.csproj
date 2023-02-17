@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Slobodianiuk.University.Github.Tracker.Models\Slobodianiuk.University.Github.Tracker.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\mdb\" />
+  </ItemGroup>
+
 </Project>

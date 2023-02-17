@@ -4,18 +4,64 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<div class="container index-container">
 
-    <p>
-        Dear students, when working on projects in a solution, it's important to make sure that all project names and namespaces are properly renamed to reflect the content of your work.
-        Please ensure that there are no example project names left in your solution.
-        To simplify this process, I recommend using the "rename solution" and global search features available in Visual Studio.
-    </p>
-        
-    <p>
-        Thank you for taking the time to ensure that your solution is properly named and organized. I wish you all the best with your coding endeavors, and happy coding!
-    </p>
+    <nav class="d-flex flex-row justify-content-center">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(true)">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(null)">Current</a></li>
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(false)">&raquo;</a></li>
+        </ul>
+    </nav>
 
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Repository/Date</th>
+
+                @foreach (var item in Model.DateStrings)
+                {
+                    <th scope="col">@item</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var repository in Model.RepositoryStats)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex flex-row align-items-center repository-row">
+                            <a href="@repository.Url">@repository.Name @repository.Surname</a>
+                        </div>
+                    </td>
+
+                    @foreach (var stats in Model.Dates.Select(date => Model.GetRepoSatsForDate(repository.RepositoryId, date)))
+                    {
+                        <td>
+                            <div class="d-flex flex-row align-items-center repository-row">
+                                <div class="total-number"
+                                     data-mdb-toggle="tooltip"
+                                     data-mdb-placement="bottom"
+                                     data-mdb-html="true"
+                                     title="+@stats.Additions / -@stats.Deletions<br/>@stats.FilesCount Files Changed">
+                                    <h5>
+                                        <span class="badge badge-@Model.GetBadgeColorClass(stats.Total)">@stats.Total</span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <nav class="d-flex flex-row justify-content-center">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(true)">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(null)">Current</a></li>
+            <li class="page-item"><a class="page-link" asp-page="Index" asp-route-from="@Model.GetPageDate(false)">&raquo;</a></li>
+        </ul>
+    </nav>
 </div>
