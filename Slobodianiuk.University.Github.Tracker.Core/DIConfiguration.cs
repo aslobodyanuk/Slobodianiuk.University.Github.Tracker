@@ -19,7 +19,7 @@ namespace Slobodianiuk.University.Github.Tracker.Core
             services.AddScoped<ITrackerFrontendService, TrackerFrontendService>();
 
             services.AddSingleton<IMapperProvider, MapperProvider>();
-            services.AddSingleton(x => GetMapper(x));
+            services.AddSingleton(GetMapper);
         }
 
         public static void RegisterCoreConfiguration(this IServiceCollection services, IConfigurationRoot configuration)
