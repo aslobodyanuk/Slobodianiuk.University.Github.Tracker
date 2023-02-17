@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>632ecefc-bbdc-4c00-b15c-ce39d69f6350</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Slobodianiuk.University.Github.Tracker.Core\Slobodianiuk.University.Github.Tracker.Core.csproj" />
+    <ProjectReference Include="..\Slobodianiuk.University.Github.Tracker.Models\Slobodianiuk.University.Github.Tracker.Models.csproj" />
+  </ItemGroup>
+
+</Project>
