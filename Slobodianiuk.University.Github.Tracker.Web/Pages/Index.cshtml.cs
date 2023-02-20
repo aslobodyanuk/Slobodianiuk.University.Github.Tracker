@@ -36,7 +36,6 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
             var to = from.AddDays(DISPLAY_DAYS - 1);
 
             RepositoryStats = (await _trackerFrontendService.LoadAllData(from, to)).ToList();
-            RepositoryStats = Enumerable.Repeat(RepositoryStats.First(), 52).ToList();
             Dates = GetDateRange(from, to).ToList();
             DateStrings = Dates.Select(x => x.ToString("ddd, dd MMM", CultureInfo.InvariantCulture)).ToList();
         }
