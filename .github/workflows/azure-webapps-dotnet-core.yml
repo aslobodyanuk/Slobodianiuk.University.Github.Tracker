@@ -54,9 +54,13 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+  
+      - name: Display Path
+        run: | 
+          echo ${{github.workspace}}
 
       - name: dotnet publish
-        run: dotnet publish ~/work/Slobodianiuk.University.Github.Tracker.Web/Slobodianiuk.University.Github.Tracker.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ${{github.workspace}}/Slobodianiuk.University.Github.Tracker.Web/Slobodianiuk.University.Github.Tracker.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
