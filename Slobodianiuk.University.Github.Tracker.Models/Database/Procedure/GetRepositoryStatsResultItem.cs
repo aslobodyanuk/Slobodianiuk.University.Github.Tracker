@@ -8,9 +8,11 @@ namespace Slobodianiuk.University.Github.Tracker.Models.Database.Procedure
 
         public string Url { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
+
+        public string? AltName { get; set; }
 
         public DateTime Date { get; set; }
 

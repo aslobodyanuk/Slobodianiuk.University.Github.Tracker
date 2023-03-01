@@ -2,9 +2,11 @@
 {
     public class Repository : GithubDbItem
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
+
+        public string? AltName { get; set; }
 
         public string Url { get; set; }
 

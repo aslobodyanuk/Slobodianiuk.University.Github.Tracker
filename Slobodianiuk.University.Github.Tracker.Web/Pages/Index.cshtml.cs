@@ -27,7 +27,7 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
         public IndexModel(ITrackerFrontendService trackerFrontendService)
         {
             _trackerFrontendService = trackerFrontendService;
-            FromDate ??= "2018-04-18";
+            FromDate ??= DateTime.Now.ToString(DATE_FORMAT);
         }
 
         public async Task OnGet()
@@ -57,6 +57,9 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
                 return "success";
 
             if (modifiedLines > 100)
+                return "info";
+
+            if (modifiedLines > 10)
                 return "warning";
 
             return "secondary";
@@ -75,6 +78,17 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
             return DateTime.Parse(FromDate)
                             .AddDays(DISPLAY_DAYS)
                             .ToString(DATE_FORMAT);
+        }
+
+        public string GetRepoName(RepositoryStats repository)
+        {
+            if (string.IsNullOrWhiteSpace(repository.AltName) == false)
+                return repository.AltName;
+
+            if (string.IsNullOrWhiteSpace(repository.Name) && string.IsNullOrWhiteSpace(repository.Surname))
+                return "No Title";
+
+            return $"{repository.Name} {repository.Surname}";
         }
 
         private IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate)

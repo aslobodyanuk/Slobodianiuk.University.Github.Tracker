@@ -8,9 +8,11 @@ namespace Slobodianiuk.University.Github.Tracker.Models.Github
 
         public string Url { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
+
+        public string? AltName { get; set; }
 
         public IEnumerable<GetRepositoryStatsResultItem> DayStats { get; set; }
     }

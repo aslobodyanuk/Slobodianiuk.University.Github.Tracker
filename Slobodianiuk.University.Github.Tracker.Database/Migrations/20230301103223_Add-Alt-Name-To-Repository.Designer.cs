@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Slobodianiuk.University.Github.Tracker.Database;
 
@@ -11,9 +12,11 @@ using Slobodianiuk.University.Github.Tracker.Database;
 namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 {
     [DbContext(typeof(TrackerDbContext))]
-    partial class TrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230301103223_Add-Alt-Name-To-Repository")]
+    partial class AddAltNameToRepository
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 
                     b.HasIndex("StatsId");
 
-                    b.ToTable("Commits", (string)null);
+                    b.ToTable("Commits");
                 });
 
             modelBuilder.Entity("Slobodianiuk.University.Github.Tracker.Models.Database.GithubUserReference", b =>
@@ -94,17 +97,13 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GithubUserReferences", (string)null);
+                    b.ToTable("GithubUserReferences");
                 });
 
             modelBuilder.Entity("Slobodianiuk.University.Github.Tracker.Models.Database.Procedure.GetRepositoryStatsResultItem", b =>
                 {
                     b.Property<int>("Additions")
                         .HasColumnType("int");
-
-                    b.Property<string>("AltName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -147,6 +146,7 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AltName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Json")
@@ -154,9 +154,11 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
@@ -165,7 +167,7 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Repositories", (string)null);
+                    b.ToTable("Repositories");
                 });
 
             modelBuilder.Entity("Slobodianiuk.University.Github.Tracker.Models.Database.Stats", b =>
@@ -187,7 +189,7 @@ namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CommitStats", (string)null);
+                    b.ToTable("CommitStats");
                 });
 
             modelBuilder.Entity("Slobodianiuk.University.Github.Tracker.Models.Database.Commit", b =>

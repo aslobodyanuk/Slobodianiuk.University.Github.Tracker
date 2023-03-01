@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Octokit;
 using Slobodianiuk.University.Github.Tracker.Database;
 using Slobodianiuk.University.Github.Tracker.Models.Configuration;
 using Commit = Slobodianiuk.University.Github.Tracker.Models.Database.Commit;
@@ -38,7 +39,16 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services
             var repositories = await _dbContext.Repositories.ToListAsync();
 
             foreach (var repository in repositories)
-                await LoadRepositoryAndCommitsIntoDatabase(repository);
+            {
+                try
+                {
+                    await LoadRepositoryAndCommitsIntoDatabase(repository);
+                }
+                catch (ApiException exc)
+                {
+                    _logger.LogError(exc, $"Error occured while synchronizing repository with url '{repository?.Url}'.");
+                }
+            }
 
             _logger.LogInformation("Commit synchronization complete.");
         }

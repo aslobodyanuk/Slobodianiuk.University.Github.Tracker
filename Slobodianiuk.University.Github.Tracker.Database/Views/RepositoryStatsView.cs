@@ -5,11 +5,16 @@
         public const string Name = "View_RepositoryStats";
 
         public const string CreateView = @$"
+IF OBJECT_ID('{Name}', 'V') IS NOT NULL
+    DROP VIEW {Name}
+GO
+
 CREATE VIEW {Name} AS
 SELECT 
 	Repositories.[Name], 
 	Repositories.[Surname], 
-	Repositories.[Url], 
+	Repositories.[Url],
+	Repositories.[AltName],
 	[Stats].*
 FROM (
 		

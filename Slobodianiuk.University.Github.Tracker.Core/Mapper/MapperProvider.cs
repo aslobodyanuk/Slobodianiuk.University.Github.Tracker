@@ -27,6 +27,7 @@ namespace Finance.Formatter.Core.Mapper
                     .ForMember(x => x.Url, m => m.Ignore())
                     .ForMember(x => x.Name, m => m.Ignore())
                     .ForMember(x => x.Surname, m => m.Ignore())
+                    .ForMember(x => x.AltName, m => m.Ignore())
                     .ForMember(x => x.Json, m => m.MapFrom(f => SerializeObject(f)));
 
                 cfg.CreateMap<Octokit.GitHubCommit, Commit>()
@@ -54,6 +55,7 @@ namespace Finance.Formatter.Core.Mapper
                     .ForMember(x => x.RepositoryId, m => m.MapFrom(f => f.Id))
                     .ForMember(x => x.Name, m => m.MapFrom(f => f.Name))
                     .ForMember(x => x.Surname, m => m.MapFrom(f => f.Surname))
+                    .ForMember(x => x.AltName, m => m.MapFrom(f => f.AltName))
                     .ForMember(x => x.Url, m => m.MapFrom(f => f.Url))
                     .ForMember(x => x.DayStats, m => m.Ignore());
 
