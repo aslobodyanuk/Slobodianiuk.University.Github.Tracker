@@ -74,7 +74,7 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services
             _logger.LogInformation($"Saved '{commitsForDatabase?.Count() ?? 0}' commits to database from repository '{updatedRepository?.Url}'.");
         }
 
-        private async Task<IEnumerable<Commit>> LoadAllCommits(Repository repository, IEnumerable<Octokit.GitHubCommit> commits)
+        private async Task<IEnumerable<Commit>> LoadAllCommits(Repository repository, IEnumerable<GitHubCommit> commits)
         {
             var delayMs = _configuration?.Value?.CommitFetchDelayMS ?? 10;
             var results = new List<Commit>();
@@ -90,7 +90,7 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services
             return results;
         }
 
-        private async Task<Commit> LoadCommit(Repository repository, Octokit.GitHubCommit commit)
+        private async Task<Commit> LoadCommit(Repository repository, GitHubCommit commit)
         {
             _logger.LogInformation($"Loading commit for repository '{repository.Url}' - '{commit.Sha}'.");
 
