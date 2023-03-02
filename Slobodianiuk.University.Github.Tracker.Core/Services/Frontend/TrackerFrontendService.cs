@@ -25,7 +25,7 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services.Frontend
             {
                 var stats = await _dbContext.RepositoryStats
                     .AsNoTracking()
-                    .Where(x => x.RepositoryId == repository.Id && x.Date > from && x.Date < to)
+                    .Where(x => x.RepositoryId == repository.Id && x.Date >= from && x.Date <= to)
                     .ToListAsync();
                 
                 var mapped = _mapper.Map<RepositoryStats>(repository);

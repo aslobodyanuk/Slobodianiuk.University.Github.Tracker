@@ -105,8 +105,11 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services
 
             _logger.LogInformation($"Loading info for repository '{repository.Url}'.");
 
-            var apiRepository = await _githubService.GetRepository(repository.Url);
+            var url = RemoveGitFromUrl(repository.Url);
+            var apiRepository = await _githubService.GetRepository(url);
             var mapped = _mapper.Map(apiRepository, repository);
+
+            mapped.Url = url;
 
             _dbContext.Update(mapped);
             await _dbContext.SaveChangesAsync();
@@ -114,6 +117,15 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services
             _logger.LogInformation($"Repository '{repository.Url}' saved to database.");
 
             return mapped;
+        }
+
+        private string RemoveGitFromUrl(string url)
+        {
+            var position = url.LastIndexOf(".git");
+            if (position >= 0)
+                url = url.Substring(0, position);
+
+            return url;
         }
     }
 }
