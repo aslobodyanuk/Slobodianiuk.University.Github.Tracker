@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Slobodianiuk.University.Github.Tracker.Core.Constants;
 using Slobodianiuk.University.Github.Tracker.Core.Services.Frontend;
 using Slobodianiuk.University.Github.Tracker.Models.Database.Procedure;
 using Slobodianiuk.University.Github.Tracker.Models.Github;
@@ -9,9 +10,6 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        const int DISPLAY_DAYS = 14;
-        const string DATE_FORMAT = "yyyy-MM-dd";
-
         [FromQuery(Name = "from")]
         public string FromDate { get; set; }
 
@@ -27,17 +25,17 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
         public IndexModel(ITrackerFrontendService trackerFrontendService)
         {
             _trackerFrontendService = trackerFrontendService;
-            FromDate ??= DateTime.Now.ToString(DATE_FORMAT);
+            FromDate ??= DateTime.Now.ToString(ProjectConstants.DATE_FORMAT);
         }
 
         public async Task OnGet()
         {
             var from = DateTime.Parse(FromDate);
-            var to = from.AddDays(DISPLAY_DAYS - 1);
+            var to = from.AddDays(ProjectConstants.DISPLAY_DAYS - 1);
 
             RepositoryStats = (await _trackerFrontendService.LoadAllData(from, to)).ToList();
             Dates = GetDateRange(from, to).ToList();
-            DateStrings = Dates.Select(x => x.ToString("ddd, dd MMM", CultureInfo.InvariantCulture)).ToList();
+            DateStrings = Dates.Select(x => x.ToString(ProjectConstants.USER_READABLE_DATE_FORMAT, CultureInfo.InvariantCulture)).ToList();
         }
 
         public GetRepositoryStatsResultItem GetRepoSatsForDate(int repositoryId, DateTime date)
@@ -68,16 +66,16 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
         public string GetPageDate(bool? isPrevious)
         {
             if (isPrevious.HasValue == false)
-                return DateTime.Now.ToString(DATE_FORMAT);
+                return DateTime.Now.ToString(ProjectConstants.DATE_FORMAT);
 
             if (isPrevious == true)
                 return DateTime.Parse(FromDate)
-                            .AddDays(-DISPLAY_DAYS)
-                            .ToString(DATE_FORMAT);
+                            .AddDays(-ProjectConstants.DISPLAY_DAYS)
+                            .ToString(ProjectConstants.DATE_FORMAT);
 
             return DateTime.Parse(FromDate)
-                            .AddDays(DISPLAY_DAYS)
-                            .ToString(DATE_FORMAT);
+                            .AddDays(ProjectConstants.DISPLAY_DAYS)
+                            .ToString(ProjectConstants.DATE_FORMAT);
         }
 
         public string GetRepoName(RepositoryStats repository)

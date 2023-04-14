@@ -18,6 +18,7 @@
         <thead>
             <tr>
                 <th scope="col">Repository/Date</th>
+                <th scope="col">Chart</th>
 
                 @foreach (var item in Model.DateStrings)
                 {
@@ -35,16 +36,29 @@
                             <a href="@repository.Url">@Model.GetRepoName(repository)</a>
                         </div>
                     </td>
+                    <td>
+                        <div class="d-flex flex-row align-items-center repository-row">
+                            <a class="badge badge-primary"
+                           data-mdb-toggle="tooltip"
+                           data-mdb-placement="right"
+                           data-mdb-html="true"
+                           title="Show all time chart"
+                           asp-page="Chart"
+                           asp-route-id="@repository.RepositoryId">
+                                C
+                            </a>
+                        </div>
+                    </td>
 
                     @foreach (var stats in Model.Dates.Select(date => Model.GetRepoSatsForDate(repository.RepositoryId, date)))
                     {
                         <td>
                             <div class="d-flex flex-row align-items-center repository-row">
                                 <div class="total-number"
-                                     data-mdb-toggle="tooltip"
-                                     data-mdb-placement="bottom"
-                                     data-mdb-html="true"
-                                     title="+@stats.Additions / -@stats.Deletions<br/>@stats.FilesCount Files Changed">
+                             data-mdb-toggle="tooltip"
+                             data-mdb-placement="bottom"
+                             data-mdb-html="true"
+                             title="+@stats.Additions / -@stats.Deletions<br/>@stats.FilesCount Files Changed">
                                     <h5>
                                         <span class="badge badge-@Model.GetBadgeColorClass(stats.Total)">@stats.Total</span>
                                     </h5>

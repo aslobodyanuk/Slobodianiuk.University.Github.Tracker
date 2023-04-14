@@ -36,5 +36,23 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services.Frontend
 
             return results;
         }
+
+        public async Task<RepositoryStats> GetRepositoryChart(int repositoryId)
+        {
+            var repository = await _dbContext.Repositories.FindAsync(repositoryId);
+
+            if (repository == default)
+                throw new Exception($"Repository with id '{repositoryId}' not found.");
+
+            var stats = await _dbContext.RepositoryStats
+                    .AsNoTracking()
+                    .Where(x => x.RepositoryId == repositoryId)
+                    .ToListAsync();
+
+            var mapped = _mapper.Map<RepositoryStats>(repository);
+            mapped.DayStats = stats;
+
+            return mapped;
+        }
     }
 }

@@ -1,0 +1,63 @@
+﻿@page
+@using System.Text.Json;
+@model Slobodianiuk.University.Github.Tracker.Web.Pages.ChartModel
+@{
+    ViewData["Title"] = "Repository Chart";
+}
+
+<div class="container">
+    <div class="d-flex flex-column">
+        <div class="p-1">
+            <h4>@Model.RepositoryStats.Name @Model.RepositoryStats.Surname</h4>
+        </div>
+        <div class="p-1"><a href="@Model.RepositoryStats.Url">@Model.RepositoryStats.Url.Replace("https://github.com/", string.Empty)</a></div>
+        <div class="p-1 mb-4">Stats: <b>@Model.GetAverageCodeLinesPerDay()</b> LOC/day</div>
+    </div>
+
+    <div class="chart-container" style="position: relative; height:50vh; width:100%;">
+        <canvas id="repository-stats-chart"></canvas>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('repository-stats-chart');
+
+    const handleTooltipContent = (tooltipItems) => {
+        return `Additions: ${tooltipItems?.[0]?.raw?.Additions ?? 0}\n` +
+            `Deletions: ${tooltipItems?.[0]?.raw?.Deletions ?? 0}`;
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Total',
+                data: @Html.Raw(JsonSerializer.Serialize(Model.GetChartValues())),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        afterBody: handleTooltipContent
+                    }
+                }
+            },
+            interaction: {
+                intersect: true,
+                mode: 'nearest'
+            },
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1600
+                }
+            }
+        }
+    });
+</script>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slobodianiuk.University.Git
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slobodianiuk.University.Github.Tracker.Models", "Slobodianiuk.University.Github.Tracker.Models\Slobodianiuk.University.Github.Tracker.Models.csproj", "{FFD1E09D-CE7D-4528-ADA5-3CE477D7F382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slobodianiuk.University.Github.Tracker.Database", "Slobodianiuk.University.Github.Tracker.Database\Slobodianiuk.University.Github.Tracker.Database.csproj", "{2765CE01-6641-46F7-A109-D1AB73EDE034}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slobodianiuk.University.Github.Tracker.Database", "Slobodianiuk.University.Github.Tracker.Database\Slobodianiuk.University.Github.Tracker.Database.csproj", "{2765CE01-6641-46F7-A109-D1AB73EDE034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
