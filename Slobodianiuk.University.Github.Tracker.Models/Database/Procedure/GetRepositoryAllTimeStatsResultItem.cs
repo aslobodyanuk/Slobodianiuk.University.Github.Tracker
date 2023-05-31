@@ -1,17 +1,7 @@
 ﻿namespace Slobodianiuk.University.Github.Tracker.Models.Database.Procedure
 {
-    public class GetRepositoryStatsResultItem
+    public class GetRepositoryAllTimeStatsResultItem
     {
-        public int RepositoryId { get; set; }
-
-        public string Url { get; set; }
-
-        public string? Name { get; set; }
-
-        public string? Surname { get; set; }
-
-        public string? AltName { get; set; }
-
         public DateTime Date { get; set; }
 
         public int Additions { get; set; }
@@ -22,7 +12,7 @@
 
         public int FilesCount { get; set; }
 
-        public static GetRepositoryStatsResultItem Default = new()
+        public static GetRepositoryAllTimeStatsResultItem Default = new()
         {
             Additions = 0,
             Deletions = 0,

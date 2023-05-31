@@ -17,6 +17,8 @@ namespace Slobodianiuk.University.Github.Tracker.Database
 
         public DbSet<GetRepositoryStatsResultItem> RepositoryStats { get; set; }
 
+        public DbSet<GetRepositoryAllTimeStatsResultItem> RepositoryAllTimeStats { get; set; }
+
         public TrackerDbContext() { }
 
         public TrackerDbContext(DbContextOptions<TrackerDbContext> options) : base(options) { }
@@ -34,6 +36,14 @@ namespace Slobodianiuk.University.Github.Tracker.Database
                     {
                         eb.HasNoKey();
                         eb.ToView(RepositoryStatsView.Name);
+                    });
+
+            modelBuilder
+                .Entity<GetRepositoryAllTimeStatsResultItem>(
+                    eb =>
+                    {
+                        eb.HasNoKey();
+                        eb.ToView(RepositoryAllTimeStatsView.Name);
                     });
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Slobodianiuk.University.Github.Tracker.Database;
+using Slobodianiuk.University.Github.Tracker.Models.Database.Procedure;
 using Slobodianiuk.University.Github.Tracker.Models.Github;
 
 namespace Slobodianiuk.University.Github.Tracker.Core.Services.Frontend
@@ -53,6 +54,13 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services.Frontend
             mapped.DayStats = stats;
 
             return mapped;
+        }
+
+        public async Task<IEnumerable<GetRepositoryAllTimeStatsResultItem>> GetAllTimeChart()
+        {
+            return await _dbContext.RepositoryAllTimeStats
+                    .AsNoTracking()
+                    .ToListAsync();
         }
     }
 }
