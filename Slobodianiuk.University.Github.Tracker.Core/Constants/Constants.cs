@@ -9,6 +9,6 @@
         public const string USER_READABLE_SHORT_DATE_FORMAT = "dd MMM";
 
         public readonly static DateTime CHART_START_DATE = new DateTime(2023, 02, 10);
-        public readonly static DateTime CHART_END_DATE = new DateTime(2023, 06, 10);
+        public readonly static DateTime CHART_END_DATE = new DateTime(2023, 06, 23);
     }
 }
