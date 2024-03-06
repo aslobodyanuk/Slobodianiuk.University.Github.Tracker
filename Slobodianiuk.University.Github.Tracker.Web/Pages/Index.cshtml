@@ -17,7 +17,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Repository/Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">Project</th>
                 <th scope="col">Chart</th>
 
                 @foreach (var item in Model.DateStrings)
@@ -32,8 +33,13 @@
             {
                 <tr>
                     <td>
-                        <div class="d-flex flex-row align-items-center repository-row">
+                        <div class="repository-row student-name text-truncate">
                             <a href="@repository.Url">@Model.GetRepoName(repository)</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="repository-row project-name text-truncate">
+                            @repository.AltName
                         </div>
                     </td>
                     <td>

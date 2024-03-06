@@ -12,7 +12,7 @@ using Slobodianiuk.University.Github.Tracker.Database;
 namespace Slobodianiuk.University.Github.Tracker.Database.Migrations
 {
     [DbContext(typeof(TrackerDbContext))]
-    [Migration("20230301103223_Add-Alt-Name-To-Repository")]
+    [Migration("20230217102121_Add-Alt-Name-To-Repository")]
     partial class AddAltNameToRepository
     {
         /// <inheritdoc />

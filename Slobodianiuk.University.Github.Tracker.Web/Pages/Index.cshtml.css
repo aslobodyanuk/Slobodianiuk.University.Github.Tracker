@@ -6,6 +6,14 @@
     height: 1.5rem;
 }
 
+.project-name {
+    max-width: 8rem;
+}
+
+.student-name {
+    width: 10rem;
+}
+
 .total-number:hover {
     cursor: pointer;
 }

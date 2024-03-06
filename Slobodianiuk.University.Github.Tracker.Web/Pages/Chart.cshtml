@@ -8,8 +8,9 @@
 <div class="container">
     <div class="d-flex flex-column">
         <div class="p-1">
-            <h4>@Model.RepositoryStats.Name @Model.RepositoryStats.Surname</h4>
+            <h4>@Model.RepositoryStats.Surname @Model.RepositoryStats.Name</h4>
         </div>
+        <div class="p-1">@Model.RepositoryStats.AltName</div>
         <div class="p-1"><a href="@Model.RepositoryStats.Url">@Model.RepositoryStats.Url.Replace("https://github.com/", string.Empty)</a></div>
         <div class="p-1 mb-4">Stats: <b>@Model.GetAverageCodeLinesPerDay()</b> LOC/day</div>
     </div>

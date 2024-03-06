@@ -35,7 +35,7 @@ namespace Slobodianiuk.University.Github.Tracker.Core.Services.Frontend
                 results.Add(mapped);
             }
 
-            return results;
+            return results.OrderBy(x => x.Surname).ThenBy(x => x.Name);
         }
 
         public async Task<RepositoryStats> GetRepositoryChart(int repositoryId)

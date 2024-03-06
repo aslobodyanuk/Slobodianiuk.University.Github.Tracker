@@ -80,13 +80,10 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
 
         public string GetRepoName(RepositoryStats repository)
         {
-            if (string.IsNullOrWhiteSpace(repository.AltName) == false)
-                return repository.AltName;
-
             if (string.IsNullOrWhiteSpace(repository.Name) && string.IsNullOrWhiteSpace(repository.Surname))
                 return "No Title";
 
-            return $"{repository.Name} {repository.Surname}";
+            return $" {repository.Surname} {repository.Name}";
         }
 
         private IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate)

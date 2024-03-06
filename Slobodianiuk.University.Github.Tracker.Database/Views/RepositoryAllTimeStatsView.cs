@@ -9,6 +9,7 @@ IF OBJECT_ID('{Name}', 'V') IS NOT NULL
     DROP VIEW {Name}
 GO
 
+CREATE VIEW {Name} AS
 SELECT
 	[Date],
 	SUM([Additions]) AS Additions,
