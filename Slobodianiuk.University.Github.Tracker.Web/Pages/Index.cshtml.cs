@@ -25,7 +25,7 @@ namespace Slobodianiuk.University.Github.Tracker.Web.Pages
         public IndexModel(ITrackerFrontendService trackerFrontendService)
         {
             _trackerFrontendService = trackerFrontendService;
-            FromDate ??= DateTime.Now.ToString(ProjectConstants.DATE_FORMAT);
+            FromDate ??= DateTime.Now.AddDays(-ProjectConstants.DISPLAY_LAST_DAYS).ToString(ProjectConstants.DATE_FORMAT);
         }
 
         public async Task OnGet()

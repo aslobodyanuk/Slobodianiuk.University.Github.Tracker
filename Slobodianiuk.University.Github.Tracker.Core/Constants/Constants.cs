@@ -2,7 +2,8 @@
 {
     public static class ProjectConstants
     {
-        public const int DISPLAY_DAYS = 14;
+        public const int DISPLAY_DAYS = 12;
+        public const int DISPLAY_LAST_DAYS = DISPLAY_DAYS - 1;
         public const string DATE_FORMAT = "yyyy-MM-dd";
 
         public const string USER_READABLE_DATE_FORMAT = "ddd, dd MMM";
